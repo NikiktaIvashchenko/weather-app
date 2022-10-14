@@ -1,0 +1,44 @@
+.app-header {
+    &,
+    & .left-side,
+    & .right-side {
+        display: flex;
+        align-items: center;
+    }
+
+    & {
+        justify-content: space-between;
+    }
+
+    .left-side {
+        gap: 40px;
+    }
+
+    .right-side {
+        gap: 80px;
+    }
+
+    .right-side .account {
+        width: 70px;
+        height: 70px;
+
+        border: 1px solid #545454;
+        border-radius: 100px;
+
+        overflow: hidden;
+    }
+}
+
+.account .account__image {
+    width: 100%;
+    height: 100%;
+}
+
+.geoposition {
+    font-family: "Circe";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+
+    color: #ffffff;
+}

@@ -1,0 +1,33 @@
+.input-container {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    &__icon {
+        position: absolute;
+        left: 34px;
+    }
+}
+
+.input {
+    width: 516px;
+
+    background: #1E1E1E;
+
+    border: 1px solid #545353;
+    border-radius: 100px;
+
+    padding: 18px 0px 17px 81px;
+
+    font-family: 'Circe';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+
+    color: #FFFFFF;
+
+    &::placeholder {
+        opacity: 0.4;
+    }
+}

@@ -1,0 +1,16 @@
+@import "fonts";
+
+$dark-theme-color: #101014;
+
+html,
+#root {
+    background: $dark-theme-color;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    color: #ffffff;
+}

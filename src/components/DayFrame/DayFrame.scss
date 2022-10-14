@@ -1,0 +1,36 @@
+.day-frame {
+    & {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 45px;
+
+        padding: 0px 7.5px;
+
+        width: 135px;
+        height: 369px;
+
+        font-family: Circe;
+        font-weight: 400;
+        font-size: 30px;
+        color: #ffffff;
+
+        background: linear-gradient(180deg, #1b1a1d 29.95%, #3b3a3e 150.81%);
+
+        border-radius: 45px;
+        border: 1.5px solid #545353;
+    }
+
+    &__day-name {
+        padding: 0px 10px 10px 10px;
+        border-bottom: 1.5px solid #545353;
+    }
+
+    &__temperature {
+        font-family: "SF Display Pro";
+        font-size: 50px;
+        font-weight: 500;
+        margin-right: -8px;
+    }
+}

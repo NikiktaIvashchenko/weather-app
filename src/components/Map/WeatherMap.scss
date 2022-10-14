@@ -1,0 +1,24 @@
+.map-container {
+    &,
+    & > div {
+        border-radius: 35px;
+        overflow: hidden;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    & * {
+        color: #000000;
+        font-size: 17px;
+        font-family: Circe;
+        font-weight: 400;
+
+        text-transform: capitalize;
+    }
+}
+
+.map-container > div .ymaps-2-1-79-map .ymaps-2-1-79-i-ua_js_yes.ymaps-2-1-79-map-bg {
+    filter: invert(1);
+}

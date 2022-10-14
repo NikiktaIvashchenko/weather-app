@@ -1,0 +1,129 @@
+.days-forecast {
+    &,
+    & .next-days {
+        padding-top: 34px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 48px;
+    }
+
+    & .next-days {
+        padding-top: 0;
+    }
+}
+
+.today-frame {
+    & {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 369px;
+
+        color: #ffffff;
+        position: relative;
+
+        overflow: hidden;
+    }
+
+    & .title {
+        font-family: "Circe";
+        font-weight: 400;
+        font-size: 30px;
+
+        display: flex;
+        justify-content: space-between;
+
+        border-bottom: 1.5px solid rgba(255, 255, 255, 0.2);
+    }
+
+    &__background-color {
+        position: absolute;
+        z-index: 0;
+
+        border-radius: 50%;
+        filter: blur(180px);
+    }
+}
+
+.today-content {
+    & {
+        position: relative;
+        z-index: 9999;
+
+        padding: 35px 38px 30px 38px;
+    }
+
+    & .content {
+        & {
+            position: relative;
+        }
+
+        &__item-temperature {
+            font-family: "SF Display Pro";
+            font-style: normal;
+            font-weight: 500;
+            font-size: 100px;
+
+            color: #ffffff;
+        }
+
+        &__icon {
+            position: absolute;
+            top: 30px;
+            right: 0px;
+
+            width: 120px;
+            height: 146.06px;
+        }
+    }
+}
+
+.today-content .content {
+    & .sub-info {
+        &,
+        & .items-container {
+            display: flex;
+            flex-direction: column;
+
+            gap: 10px;
+
+            font-family: "Circe";
+            font-weight: 350;
+            font-size: 20px;
+        }
+        & .items-container {
+            flex-direction: row;
+            gap: 16px;
+        }
+    }
+}
+
+#purple {
+    background: #e231ff;
+    width: 330px;
+    height: 277px;
+
+    left: 156px;
+    top: -55px;
+}
+
+#light-blue {
+    width: 428px;
+    height: 476px;
+    background: #31daff;
+
+    left: -254px;
+    top: -237px;
+}
+
+#blue {
+    width: 659px;
+    height: 222px;
+    left: -173px;
+    top: 185px;
+
+    background: #316bff;
+}

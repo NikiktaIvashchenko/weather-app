@@ -1,0 +1,92 @@
+@import "../public/styles/style.scss";
+.App {
+  & {
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 50px;
+    padding-bottom: 70px;
+  }
+
+  & > .content {
+    & {
+      padding-top: 70px;
+    }
+
+    & .main {
+      padding-right: 60px;
+    }
+
+    & .sidebar {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+
+      gap: 50px;
+    }
+  }
+}
+
+.map-section {
+  & {
+    padding-top: 98px;
+  }
+
+  & .section-title {
+    & {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding-bottom: 40px;
+    }
+
+    & > span {
+      font-family: "Circe";
+      font-weight: 400;
+      font-size: 40px;
+    }
+
+    & .map-section__button-do-wide {
+      padding: 10px 45px;
+    }
+  }
+}
+
+.main__header {
+  &,
+  & .forecast-period-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  & .forecast-period-list {
+    & {
+      gap: 50px;
+
+      padding: 0;
+    }
+
+    &__item {
+      list-style-type: none;
+    }
+
+    &__item a {
+      font-family: "Circe";
+      font-weight: 400;
+      font-size: 40px;
+
+      color: #ffffff;
+
+      opacity: 0.2;
+
+      text-decoration: none;
+    }
+
+    &__item a.active {
+      font-weight: 700;
+      opacity: 1;
+    }
+  }
+}

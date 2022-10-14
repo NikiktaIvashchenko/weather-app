@@ -1,0 +1,17 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 22px;
+    background: #1e1e1e;
+
+    border: 1px solid #545353;
+
+    border-radius: 100px;
+
+    font-family: "Circe";
+    font-weight: 350;
+    font-size: 24px;
+}
