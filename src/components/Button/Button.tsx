@@ -9,7 +9,7 @@ type ButtonProps = {
 
 function Button({ children, classNames = [], onClick }: ButtonProps) {
     return (
-        <button className={['button', ...classNames].join(' ')}>
+        <button className={['button', ...classNames].join(' ')} onClick={onClick}>
             {children}
         </button>
     );

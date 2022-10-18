@@ -1,13 +1,14 @@
-import React, { DetailedHTMLProps, InputHTMLAttributes, KeyboardEventHandler, ReactElement, ReactNode, useMemo, useState } from 'react';
-import { useRef, useEffect } from 'react';
 import './SearchInput.scss'
 
 import searchIcon from '../../assets/icons/fi-rr-search.svg';
-import { CitiesResponse, ICity, GeolocationInfo } from '../../utils/types';
-import { CITIESAUTOCOMPLETE_API_OPTIONS } from '../../api';
+import { IWeatherForecast } from '../../utils/types';
 
-import { Formik, FormikErrors, FormikValues } from 'formik';
-import { debounce } from 'lodash';
+import { useFormik } from 'formik';
+
+import { useRef, useState, memo } from 'react';
+import { useAppDispatch } from '../../utils/redux/hooks';
+import { setGeolocation } from '../../utils/redux/slices/geoSlice';
+
 
 const axios = require('axios').default
 const yup = require('yup');
@@ -19,45 +20,54 @@ interface SearchInputProps {
 
 function SearchInput({ placeholder, classNames = [] }: SearchInputProps) {
 
-    let schema = yup.string().matches(/^[a-zA-z]+$/);
+    const [isFocused, setIsFocused] = useState<boolean>(false);
 
-    const [targetName, setTargetName] = useState<string>('');
+    const dispatch = useAppDispatch();
 
-    const debouncedSearch = useRef(
-        debounce((name: string) => {
-            schema.isValid(name).then((res: boolean) => {
-                if (!res) return;
-                CITIESAUTOCOMPLETE_API_OPTIONS.params.q = name;
-                axios.request(CITIESAUTOCOMPLETE_API_OPTIONS).then(function (response: CitiesResponse) {
-                    if (response.data.length !== 0)
-                        console.log(response.data);
-                }).catch(function (error: any) {
-                    console.error(error);
-                });
-            });
-        }, 500)
-    ).current;
+    console.log('search input render')
 
-    useEffect(() => {
-        return () => {
-            debouncedSearch.cancel();
-        }
-    }, [debouncedSearch])
+    let CityNameValidationSchema = yup.object().shape({
+        targetName: yup.string()
+            .required()
+            .matches(/^[а-яА-Я|a-zA-Z]+(?:[\s-][а-яА-Я|a-zA-Z]+)*$/)
+    })
 
-    useEffect(() => {
-        debouncedSearch(targetName)
-    }, [targetName])
+    const formik = useFormik({
+        initialValues: {
+            targetName: ''
+        },
+        onSubmit: values => {
+            axios.get(`${process.env.REACT_APP_WEATHER_API_LINK}/weather?q=${values.targetName}&appid=${process.env.REACT_APP_WEATHER_API}`)
+                .then(({ data }: { data: IWeatherForecast }) => dispatch(setGeolocation({
+                    name: data.name,
+                    lat: data.coord.lat,
+                    lon: data.coord.lon,
+                    country: data.sys.country,
+                })))
+                .catch((err: Error) => console.log(err.message))
+        },
+        validationSchema: CityNameValidationSchema
+    });
 
     return (
-        <div className='input-container'>
-            <img src={searchIcon} alt='' className='input-container__icon' />
-            <input className={['input', ...classNames].join(' ')}
-                placeholder={placeholder}
-                value={targetName}
-                onChange={(e) => setTargetName(e.target.value)}
-            />
-        </div >
+        <form onSubmit={formik.handleSubmit}>
+            <div className='input-container'>
+                <img src={searchIcon} alt='' className='input-container__icon' />
+                <input className={['input', ...classNames].join(' ')}
+                    placeholder={placeholder}
+                    name='targetName'
+                    onChange={formik.handleChange}
+                    value={formik.values.targetName}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                />
+                {(isFocused)
+                    ? formik.errors.targetName ? <div>{formik.errors.targetName}</div> : null
+                    : null
+                }
+            </div >
+        </form>
     );
 }
 
-export default SearchInput;
+export default memo(SearchInput);

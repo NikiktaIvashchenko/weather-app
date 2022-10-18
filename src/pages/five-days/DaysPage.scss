@@ -14,6 +14,17 @@
     }
 }
 
+.air-quality-forecast {
+    display: flex;
+    justify-content: space-between;
+
+    padding-top: 38px;
+
+    & .air-quality-item:first-child {
+        background: linear-gradient(0deg, #46c6ff 29.95%, #d33eff 90.81%) !important;
+    }
+}
+
 .today-frame {
     & {
         display: flex;
@@ -76,7 +87,7 @@
             right: 0px;
 
             width: 120px;
-            height: 146.06px;
+            height: 120.06px;
         }
     }
 }

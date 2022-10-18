@@ -8,12 +8,16 @@ export function useGeolocation(): GeolocationInfo {
     const [latitude, setLatitude] = useState<number>(0);
     const [longitude, setLongitude] = useState<number>(0);
     const [cityName, setCityName] = useState<string>('');
+    const [country, setCountry] = useState<string>('');
 
     useMemo(() => {
         axios.get(`${process.env.REACT_APP_GEOLOCATION_LINK}?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API}`)
             .then(
-                ({ data }: any) => {
-                    if (data.length !== 0) setCityName(`${data[0].name}`)
+                ({ data }: { data: GeolocationInfo[] }) => {
+                    if (data.length !== 0) {
+                        setCityName(`${data[0].name}`)
+                        setCountry(`${data[0].country}`);
+                    }
                 },
 
                 ({ error }: any) => {
@@ -40,8 +44,9 @@ export function useGeolocation(): GeolocationInfo {
     }, [])
 
     return {
-        cityName: cityName,
-        longitude: longitude,
-        latitude: latitude
+        name: cityName,
+        lat: latitude,
+        lon: longitude,
+        country: country
     }
 }

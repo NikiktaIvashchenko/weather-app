@@ -1,0 +1,38 @@
+.air-quality-frame {
+    & {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        gap: 40px;
+
+        width: 150px;
+        height: 369px;
+
+        background: linear-gradient(180deg, #1b1a1d 29.95%, #3b3a3e 150.81%);
+
+        border: 1px solid #545353;
+        border-radius: 45px;
+
+        font-family: Circe;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    &-components {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__title {
+        font-family: "Circe";
+        font-weight: 400;
+        font-size: 30px;
+
+        padding: 0px 5px 10px 5px;
+        border-bottom: 1px solid lightgray;
+    }
+}

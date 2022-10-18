@@ -10,12 +10,11 @@ import Switch from '../Switch/Switch';
 import accountImage from '../../assets/icons/account-image.jpg'
 import light from '../../assets/icons/light-theme.svg'
 import dark from '../../assets/icons/dark-theme.svg'
-import { useEffect, useState } from 'react';
-import { GeolocationInfo, IWeatherForecast } from '../../utils/types';
-import { useGeolocation } from '../../utils/hooks/useGeolocation';
+import { memo, useEffect, useState } from 'react';
+import { GeolocationInfo, IWeatherForecast, Theme } from '../../utils/types';
 import { WeatherForecast } from '../../utils/classes';
 import { useSelector } from 'react-redux';
-import { GeoContext, useGeo } from '../../utils/contexts';
+import { useAppSelector } from '../../utils/redux/hooks';
 
 const axios = require('axios').default
 
@@ -25,7 +24,10 @@ type HeaderProps = {
 
 function Header({ classNames = [] }: HeaderProps) {
 
-    const { info } = useGeo();
+    const [theme, setTheme] = useState<Theme>(Theme.Dark);
+
+    const geoposition = useAppSelector(state => state.geolocation.value);
+    console.log(geoposition);
 
     return (
         <div className='app-header'>
@@ -37,12 +39,12 @@ function Header({ classNames = [] }: HeaderProps) {
                     <img src={notification} alt='apps' />
                 </Button>
                 <span className='geoposition'>
-                    {info?.cityName}
+                    {geoposition.name},{geoposition.country}
                 </span>
             </div>
             <SearchInput placeholder='Search' />
             <div className='right-side '>
-                <Switch>
+                <Switch onClick={() => setTheme}>
                     <img className='slider__item left' src={light} alt='light-theme' />
                     <img className='slider__item right' src={dark} alt='dark-theme' />
                 </Switch>
@@ -54,4 +56,4 @@ function Header({ classNames = [] }: HeaderProps) {
     );
 }
 
-export default Header;
+export default memo(Header);

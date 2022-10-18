@@ -12,13 +12,13 @@ import TodayPage from './pages/today/TodayPage';
 import TommorowPage from './pages/tommorow/TommorowPage';
 import DaysPage from './pages/five-days/DaysPage';
 import { Provider } from 'react-redux';
-import { CurrentWeatherContext } from './utils/contexts';
+import { store } from './utils/redux/store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />}>
@@ -29,5 +29,6 @@ root.render(
         </Route>
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+  </Provider>
+
 );

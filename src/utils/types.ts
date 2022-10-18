@@ -1,52 +1,46 @@
 import { WeatherForecast } from "./classes"
 
+export enum ActiveDataType {
+    AirQuality,
+    WeatherForecast
+}
+
+export enum Theme {
+    Light,
+    Dark
+}
+
 export type GeolocationInfo = {
-    cityName: string,
-    latitude: number,
-    longitude: number
+    name: string,
+    lat: number,
+    lon: number,
+    country?: string,
+    state?: string,
 }
 
-export type GeoContextType = {
-    info?: GeolocationInfo,
-    setInfo: (info: GeolocationInfo) => void;
-}
-
-export type CurrentWeatherContextType = {
-    weather?: WeatherForecast,
-    setCurrentWeather: (weather: WeatherForecast) => void;
-}
-
-export type WeatherForecastContextType = {
-    forecast?: WeatherForecast[],
-    setWeatherForecast: (forecast: WeatherForecast[]) => void;
-}
-
-export type CitiesApiOptions = {
-    method: string;
-    url: string;
-    params: {
-        limit: string,
-        skip: string,
-        q: string,
-        type: string
-    },
-    headers: {
-        'X-RapidAPI-Key': string,
-        'X-RapidAPI-Host': string
+export interface IAirQuality {
+    components: {
+        co: number,
+        no: number,
+        no2: number,
+        o3: number,
+        so2: number,
+        pm2_5: number,
+        pm10: number,
+        nh3: number
     }
+    dt: number;
 }
 
-export interface ICity {
-    coordinates: {
-        latitude: number,
-        longitude: number,
-    },
-    country: { id: string },
-    name: string
+export interface IUVIndex {
+    uv: number;
+    uv_max: number;
 }
 
-export type CitiesResponse = {
-    data: Array<ICity>;
+export interface ISysData {
+    country: string;
+    sunrise: number;
+    sunset: number;
 }
 
 export interface IMainForecast {
@@ -75,8 +69,14 @@ export interface IWeatherIcon {
 
 
 export interface IWeatherForecast {
+    coord: {
+        lon: number,
+        lat: number
+    };
     dt: number;
     main: IMainForecast;
     weather: IWeatherIcon[];
     wind: IWindData;
+    name: string;
+    sys: ISysData;
 }

@@ -22,6 +22,11 @@
         border: 1.5px solid #545353;
     }
 
+    &__weather-icon {
+        width: 100px;
+        height: 100px;
+    }
+
     &__day-name {
         padding: 0px 10px 10px 10px;
         border-bottom: 1.5px solid #545353;

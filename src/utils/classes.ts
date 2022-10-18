@@ -18,7 +18,7 @@ export class WindData {
     }
 
     public getKPHSpeed(speed: number) {
-        return (speed * 3.6).toFixed(2);
+        return (speed * 3.6).toFixed(1);
     }
 
 }
@@ -34,11 +34,7 @@ export class WeatherIcon {
         this.id = icon.id;
         this.main = icon.main;
         this.description = icon.description;
-        this.icon = icon.icon;
-    }
-
-    public getIconName() {
-        return `${this.id}_${this.icon}.svg`;
+        this.icon = `http://openweathermap.org/img/wn/${icon.icon}.png`
     }
 }
 
@@ -71,6 +67,9 @@ export class WeatherForecast {
     public main: MainForecast;
     public icon: WeatherIcon;
     public wind: WindData;
+    public sunrise: Date;
+    public sunset: Date;
+
 
     constructor(weather: IWeatherForecast) {
         this.date = new Date(weather.dt * 1000);
@@ -81,5 +80,8 @@ export class WeatherForecast {
         this.main = new MainForecast(weather.main);
         this.icon = new WeatherIcon(weather.weather[0]);
         this.wind = new WindData(weather.wind);
+
+        this.sunrise = new Date(weather.sys.sunrise * 1000);
+        this.sunset = new Date(weather.sys.sunset * 1000);
     }
 }

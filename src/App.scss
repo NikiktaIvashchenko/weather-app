@@ -19,9 +19,6 @@
     & .sidebar {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      justify-content: flex-end;
-
       gap: 50px;
     }
   }
@@ -88,5 +85,129 @@
       font-weight: 700;
       opacity: 1;
     }
+  }
+}
+
+.chart-container {
+  & {
+    width: 369px;
+    height: 395px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 30px;
+
+    position: relative;
+
+    z-index: 9999;
+
+    box-shadow: none;
+  }
+
+  & .title {
+    font-family: "Circe";
+    font-weight: 400;
+    font-size: 24px;
+
+    align-self: flex-start;
+  }
+
+  & .chart {
+    margin: 54px 25px 0px 0px !important;
+    position: relative;
+    width: 360px !important;
+    height: 184px !important;
+  }
+
+  &__background_center {
+    position: absolute;
+    z-index: 0;
+
+    width: 153px;
+    height: 153px;
+
+    filter: blur(180px);
+
+    &.blue {
+      background: rgba(49, 218, 255, 0.65);
+    }
+
+    &.yellow {
+      background: #ffc72d8a;
+    }
+  }
+
+  & .sub-info {
+    & {
+      width: 100%;
+
+      display: flex;
+      justify-content: space-between;
+
+      position: relative;
+    }
+
+    & .current-info .value {
+      font-family: "SF Display Pro";
+      font-weight: 500;
+      font-size: 50px;
+    }
+
+    & .current-info .units,
+    & .current-time {
+      font-family: "Circe";
+      font-weight: 400;
+      font-size: 16px;
+      color: #ffffff;
+      opacity: 0.4;
+    }
+
+    & .current-time {
+      position: relative;
+      top: 36px;
+      right: 0;
+    }
+
+    &#uv_index {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.sub-info .sunstate {
+  & {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &.right-aligned {
+    align-items: flex-end;
+  }
+
+  &__img-desc {
+    width: 25px;
+    height: 25px;
+  }
+
+  &__text-desc {
+    font-family: "Circe";
+    font-weight: 400;
+    font-size: 16px;
+
+    color: #ffc62d;
+  }
+
+  &__time {
+    font-family: "Circe";
+    font-style: normal;
+    font-size: 24px;
+
+    color: #ffffff;
   }
 }
